@@ -1,12 +1,14 @@
 const elementoParaInserirLivros = document.getElementById('livros')
 
 function exibirOsLivrosNaTela(listaDeLivros) {  
-    elementoParaInserirLivros.innerHTML = '' // Limpa o conteúdo anterior para evitar duplicação
-    listaDeLivros.forEach(livro => { // Para cada livro, adiciona um bloco HTML com as informações do livro
+    elementoParaInserirLivros.innerHTML = '' 
+    listaDeLivros.forEach(livro => { 
+        //let disponibilidade = verificarDisponibilidadeDoLivro(livro) // 
+        let disponibilidade = livro.quantidade > 0 ? 'livro__imagens' : 'livro__imagens indisponivel' // operador ternário
         elementoParaInserirLivros.innerHTML +=  `       
         
         <div class="livro">
-            <img class="livro__imagens" src="${livro.imagem}" alt="${livro.alt}" />
+            <img class="${disponibilidade}" src="${livro.imagem}" alt="${livro.alt}" />
             <h2 class="livro__titulo">
                 ${livro.titulo}
             </h2>
@@ -18,3 +20,11 @@ function exibirOsLivrosNaTela(listaDeLivros) {
         </div>`
     })
 }
+
+/*function verificarDisponibilidadeDoLivro(livro) {
+    if (livro.quantidade > 0) {
+        return 'livro__imagens'
+    } else {
+        return 'livro__imagens indisponivel'
+    }
+}*/
